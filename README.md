@@ -89,17 +89,3 @@ A single-cycle RISC-V CPU implementing the RV32I base integer instruction set, b
 The module declares no stimulus (`initial` block) of its own — it's meant to be driven from a separate test harness that calls these functions with sample arrays.
 
 ---
-
-## Simulating
-
-Each file can be compiled and run independently with a standard open-source simulator, e.g. [Icarus Verilog](http://iverilog.icarus.com/):
-
-```bash
-# RTL + self-checking testbench in one file
-iverilog -o sim Risc-v_.v && vvp sim
-
-# SystemVerilog file (needs -g2012 for SV constructs)
-iverilog -g2012 -o sim Systemverilog.sv && vvp sim
-```
-
-`Ram.v`, `STA.v`, `paritygen.v`, and `trafficligt.v` contain only the design module (no testbench) — instantiate them in a small harness, or use a waveform viewer (e.g. GTKWave with `$dumpfile`/`$dumpvars`) to exercise them interactively.
